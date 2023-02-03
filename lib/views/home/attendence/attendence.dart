@@ -84,10 +84,12 @@ class Attendence extends StatelessWidget {
                       text: attendenceResult.data[i].indate
                           .split(" ")[1]
                           .split(".")[0]),
-                  val(
-                      text: attendenceResult.data[i].outdate
-                          .split(" ")[1]
-                          .split(".")[0]),
+                  attendenceResult.data[i].outdate.isEmpty
+                      ? val(text: attendenceResult.data[i].outdate)
+                      : val(
+                          text: attendenceResult.data[i].outdate
+                              .split(" ")[1]
+                              .split(".")[0]),
                   val(
                       text: attendenceResult.data[i].status.toString(),
                       isStatus: true),

@@ -110,198 +110,242 @@ class LeavesScreen extends StatelessWidget {
           ),
         ),
         spaceHeight(5),
-        Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: cntr.seletedTabIndex == 0
-                ? cntr.newleaves.length
-                : cntr.seletedTabIndex == 1
-                    ? cntr.rejectedleaves.length
-                    : cntr.acceptedleaves.length,
-            itemBuilder: (context, index) {
-              var data = cntr.seletedTabIndex == 0
-                  ? cntr.newleaves[index]
-                  : cntr.seletedTabIndex == 1
-                      ? cntr.rejectedleaves[index]
-                      : cntr.acceptedleaves[index];
-              return Card(
-                elevation: 2,
-                surfaceTintColor: Colors.white,
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Container(
-                  // height: 100,
-                  width: sW(context),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              const Text(
-                                "EmpId :",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 10),
-                              ),
-                              spaceWidth(4),
-                              Text(
-                                data.empcode,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                    color: Colors.grey),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                "LeaveDate:",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 10),
-                              ),
-                              spaceWidth(4),
-                              Container(
+
+        //check the tab is empty
+        cntr.seletedTabIndex == 0 && cntr.newleaves.isEmpty
+            ? const Expanded(child: Center(child: Text("Empty")))
+            : cntr.seletedTabIndex == 1 && cntr.rejectedleaves.isEmpty
+                ? const Expanded(child: Center(child: Text("Empty")))
+                : cntr.seletedTabIndex == 2 && cntr.rejectedleaves.isEmpty
+                    ? const Expanded(child: Center(child: Text("Empty")))
+                    : Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: cntr.seletedTabIndex == 0
+                              ? cntr.newleaves.length
+                              : cntr.seletedTabIndex == 1
+                                  ? cntr.rejectedleaves.length
+                                  : cntr.acceptedleaves.length,
+                          itemBuilder: (context, index) {
+                            var data = cntr.seletedTabIndex == 0
+                                ? cntr.newleaves[index]
+                                : cntr.seletedTabIndex == 1
+                                    ? cntr.rejectedleaves[index]
+                                    : cntr.acceptedleaves[index];
+                            return Card(
+                              elevation: 2,
+                              surfaceTintColor: Colors.white,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              child: Container(
+                                // height: 100,
+                                width: sW(context),
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 3, vertical: 3),
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 255, 226, 224),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Text(
-                                  data.leaveDate,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                      color: Colors.red),
+                                    horizontal: 5, vertical: 5),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              "EmpId :",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 10),
+                                            ),
+                                            spaceWidth(4),
+                                            Text(
+                                              data.empcode,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13,
+                                                  color: Colors.grey),
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              "LeaveDate:",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 10),
+                                            ),
+                                            spaceWidth(4),
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 3,
+                                                      vertical: 3),
+                                              decoration: BoxDecoration(
+                                                  color: Color.fromARGB(
+                                                      255, 255, 226, 224),
+                                                  borderRadius:
+                                                      BorderRadius.circular(8)),
+                                              child: Text(
+                                                data.leaveDate,
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 12,
+                                                    color: Colors.red),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Text(
+                                          "EmpName :",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10),
+                                        ),
+                                        spaceWidth(4),
+                                        Text(
+                                          data.name,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    spaceHeight(2),
+                                    const Text(
+                                      "-- Reason ?",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10),
+                                    ),
+                                    spaceHeight(2),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      child: Text(
+                                        data.reason,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12),
+                                      ),
+                                    ),
+                                    spaceHeight(10),
+                                    data.status == "0"
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              TextButton(
+                                                onPressed: () async {
+                                                  var result =
+                                                      await cntr.updateLeave(
+                                                          id: data.id,
+                                                          status: 1,
+                                                          datas: data);
+                                                  if (result == "ok") {
+                                                    Fluttertoast.showToast(
+                                                        msg:
+                                                            "Leave Approved !!");
+                                                  } else {
+                                                    Fluttertoast.showToast(
+                                                        msg: result);
+                                                  }
+                                                },
+                                                child: const Text(
+                                                  "Approve",
+                                                  style: TextStyle(
+                                                      color: Colors.green),
+                                                ),
+                                              ),
+                                              TextButton(
+                                                onPressed: () async {
+                                                  var result =
+                                                      await cntr.updateLeave(
+                                                          id: data.id,
+                                                          status: -1,
+                                                          datas: data);
+                                                  if (result == "ok") {
+                                                    Fluttertoast.showToast(
+                                                        msg:
+                                                            "Leave Rejected !!");
+                                                  } else {
+                                                    Fluttertoast.showToast(
+                                                        msg: result);
+                                                  }
+                                                },
+                                                child: const Text(
+                                                  "Reject",
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : data.status == "-1"
+                                            ? Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 2),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.red,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8)),
+                                                    child: const Text(
+                                                      "Rejected",
+                                                      style: TextStyle(
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.white),
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            : Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 2),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.green,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8)),
+                                                    child: const Text(
+                                                      "Approved",
+                                                      style: TextStyle(
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.white),
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text(
-                            "EmpName :",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 10),
-                          ),
-                          spaceWidth(4),
-                          Text(
-                            data.name,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                            ),
-                          )
-                        ],
-                      ),
-                      spaceHeight(2),
-                      const Text(
-                        "-- Reason ?",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 10),
-                      ),
-                      spaceHeight(2),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          data.reason,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 12),
+                            );
+                          },
                         ),
-                      ),
-                      spaceHeight(10),
-                      data.status == "0"
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                TextButton(
-                                  onPressed: () async {
-                                    var result = await cntr.updateLeave(
-                                        id: data.id, status: 1, datas: data);
-                                    if (result == "ok") {
-                                      Fluttertoast.showToast(
-                                          msg: "Leave Approved !!");
-                                    } else {
-                                      Fluttertoast.showToast(msg: result);
-                                    }
-                                  },
-                                  child: const Text(
-                                    "Approve",
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    var result = await cntr.updateLeave(
-                                        id: data.id, status: -1, datas: data);
-                                    if (result == "ok") {
-                                      Fluttertoast.showToast(
-                                          msg: "Leave Approved !!");
-                                    } else {
-                                      Fluttertoast.showToast(msg: result);
-                                    }
-                                  },
-                                  child: const Text(
-                                    "Reject",
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                              ],
-                            )
-                          : data.status == "-1"
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5, vertical: 2),
-                                      decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: const Text(
-                                        "Rejected",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    )
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5, vertical: 2),
-                                      decoration: BoxDecoration(
-                                          color: Colors.green,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: const Text(
-                                        "Approved",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    )
-                                  ],
-                                )
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        )
+                      )
       ],
     );
   }

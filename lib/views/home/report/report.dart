@@ -1,8 +1,6 @@
 import 'package:employee_manage/utils/utils.dart';
 import 'package:employee_manage/views/home/report/attendence_report.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Report extends StatelessWidget {
   const Report({super.key});
@@ -16,12 +14,26 @@ class Report extends StatelessWidget {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          ListTile(
-            onTap: () => navigatorKey.currentState!
-                .push(MaterialPageRoute(builder: (_) => AttendenceReport())),
-            title: const Text(
-              "Attendence",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 19),
+          Container(
+            height: 80,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                color: Colors.blue.shade100,
+                border: Border.all(color: Colors.grey.shade100)),
+            child: ListTile(
+              onTap: () => navigatorKey.currentState!
+                  .push(MaterialPageRoute(builder: (_) => AttendenceReport())),
+              leading: Image.asset(
+                'assets/images/attendance.png',
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+              title: const Text(
+                "Attendence",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+              ),
             ),
           )
         ],

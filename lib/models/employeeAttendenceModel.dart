@@ -44,9 +44,9 @@ class EmployeeAttendenceModel {
           empCode: json['empcode'],
           name: json['name'],
           indate: json['indate'],
-          outdate: json['outdate'],
-          outlocation: json['outlocation'],
-          overtime: json['overtime'],
-          workhours: json['workhours'],
+          outdate: json['outdate'] ?? "",
+          outlocation: json['outlocation'] ?? "",
+          overtime: json['overtime'] ?? "",
+          workhours: json['workhours'] ?? "",
           inlocation: json['inlocation']);
 }

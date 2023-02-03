@@ -49,7 +49,7 @@ class _AttendenceReportState extends State<AttendenceReport> {
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime(2019),
-                              lastDate: DateTime(2023),
+                              lastDate: DateTime.now(),
                             );
                             if (selected != null) {
                               context
