@@ -87,10 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   // PopupMenuItem 1
                   PopupMenuItem(
                     value: 1,
+
                     onTap: () async {
-                      navigatorKey.currentState!.push(MaterialPageRoute(
-                        builder: (context) => const Notifications(),
-                      ));
+                      await Future.delayed(
+                          const Duration(milliseconds: 10),
+                          () =>
+                              navigatorKey.currentState!.push(MaterialPageRoute(
+                                builder: (context) => const Notifications(),
+                              )));
                     },
                     // row with 2 children
                     child: Row(
